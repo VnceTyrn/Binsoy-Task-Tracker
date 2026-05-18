@@ -1,306 +1,140 @@
-const STORAGE_KEYS = {
-  tasks: 'taskTrackerTasks',
-  settings: 'taskTrackerSettings'
-};
-
-const DEFAULT_SETTINGS = {
-  token: '',
-  repo: '',
-  path: 'schedule-progress.json',
-  branch: 'main'
-};
-
-const DEFAULT_TASKS = [
-  { id: 1, date: 'May 20 (Wed)', time: '6:30 AM - 7:00 AM', name: 'Cytriboost Syrup', dose: '3 ml (Give after or with a meal)', notes: '', completed: false },
-  { id: 2, date: 'May 20 (Wed)', time: '9:00 AM', name: 'Prednisone Derpson Tablet', dose: '1 tablet (Give with snack/small treats)', notes: '', completed: false },
-  { id: 3, date: 'May 20 (Wed)', time: '12:30 PM - 1:00 PM', name: 'Papi Bion Syrup', dose: '2 ml (Once daily supplement)', notes: '', completed: false },
-  { id: 4, date: 'May 20 (Wed)', time: '1:30 PM - 2:00 PM', name: 'ImmunoCare Syrup', dose: '3 ml (Once daily supplement)', notes: '', completed: false },
-  { id: 5, date: 'May 20 (Wed)', time: '6:30 PM - 7:30 PM', name: 'Prednisone Derpson Tablet', dose: '1 tablet (2nd dose; Give with snack/treats)', notes: '', completed: false },
-  { id: 6, date: 'May 20 (Wed)', time: '9:00 PM', name: 'Cytriboost Syrup', dose: '3 ml (2nd dose; Give after or with a meal)', notes: '', completed: false },
-  { id: 7, date: 'May 21 (Thu)', time: '6:30 AM - 7:00 AM', name: 'Cytriboost Syrup', dose: '3 ml (Give after or with a meal)', notes: '', completed: false },
-  { id: 8, date: 'May 21 (Thu)', time: '9:00 AM', name: 'Prednisone Derpson Tablet', dose: '1 tablet (Give with snack/small treats)', notes: '', completed: false },
-  { id: 9, date: 'May 21 (Thu)', time: '12:30 PM - 1:00 PM', name: 'Papi Bion Syrup', dose: '2 ml (Once daily supplement)', notes: '', completed: false },
-  { id: 10, date: 'May 21 (Thu)', time: '1:30 PM - 2:00 PM', name: 'ImmunoCare Syrup', dose: '3 ml (Once daily supplement)', notes: '', completed: false },
-  { id: 11, date: 'May 21 (Thu)', time: '6:30 PM - 7:30 PM', name: 'Prednisone Derpson Tablet', dose: '1 tablet (2nd dose; Give with snack/treats)', notes: '', completed: false },
-  { id: 12, date: 'May 21 (Thu)', time: '9:00 PM', name: 'Cytriboost Syrup', dose: '3 ml (2nd dose; Give after or with a meal)', notes: '', completed: false },
-  { id: 13, date: 'May 22 (Fri)', time: '6:30 AM - 7:00 AM', name: 'Cytriboost Syrup', dose: '3 ml (Give after or with a meal)', notes: '', completed: false },
-  { id: 14, date: 'May 22 (Fri)', time: '9:00 AM', name: 'Prednisone Derpson Tablet', dose: '1 tablet (Give with snack/small treats)', notes: '', completed: false },
-  { id: 15, date: 'May 22 (Fri)', time: '12:30 PM - 1:00 PM', name: 'Papi Bion Syrup', dose: '2 ml (Once daily supplement)', notes: '', completed: false },
-  { id: 16, date: 'May 22 (Fri)', time: '1:30 PM - 2:00 PM', name: 'ImmunoCare Syrup', dose: '3 ml (Once daily supplement)', notes: '', completed: false },
-  { id: 17, date: 'May 22 (Fri)', time: '6:30 PM - 7:30 PM', name: 'Prednisone Derpson Tablet', dose: '1 tablet (2nd dose; Give with snack/treats)', notes: '', completed: false },
-  { id: 18, date: 'May 22 (Fri)', time: '9:00 PM', name: 'Cytriboost Syrup', dose: '3 ml (2nd dose; Give after or with a meal)', notes: '', completed: false },
-  { id: 19, date: 'May 23 (Sat)', time: '6:30 AM - 7:00 AM', name: 'Cytriboost Syrup', dose: '3 ml (Give after or with a meal)', notes: '', completed: false },
-  { id: 20, date: 'May 23 (Sat)', time: '9:00 AM', name: 'Prednisone Derpson Tablet', dose: '1 tablet (Give with snack/small treats)', notes: '', completed: false },
-  { id: 21, date: 'May 23 (Sat)', time: '12:30 PM - 1:00 PM', name: 'Papi Bion Syrup', dose: '2 ml (Once daily supplement)', notes: '', completed: false },
-  { id: 22, date: 'May 23 (Sat)', time: '1:30 PM - 2:00 PM', name: 'ImmunoCare Syrup', dose: '3 ml (Once daily supplement)', notes: '', completed: false },
-  { id: 23, date: 'May 23 (Sat)', time: '6:30 PM - 7:30 PM', name: 'Prednisone Derpson Tablet', dose: '1 tablet (2nd dose; Give with snack/treats)', notes: '', completed: false },
-  { id: 24, date: 'May 23 (Sat)', time: '9:00 PM', name: 'Cytriboost Syrup', dose: '3 ml (2nd dose; Give after or with a meal)', notes: '', completed: false },
-  { id: 25, date: 'May 24 (Sun)', time: '6:30 AM - 7:00 AM', name: 'Cytriboost Syrup', dose: '3 ml (Give after or with a meal)', notes: '', completed: false },
-  { id: 26, date: 'May 24 (Sun)', time: '9:00 AM', name: 'Prednisone Derpson Tablet', dose: 'PHASE CHANGE: 1 tablet ONCE a day today (With snack)', notes: '', completed: false },
-  { id: 27, date: 'May 24 (Sun)', time: '12:30 PM - 1:00 PM', name: 'Papi Bion Syrup', dose: '2 ml (Once daily supplement)', notes: '', completed: false },
-  { id: 28, date: 'May 24 (Sun)', time: '1:30 PM - 2:00 PM', name: 'ImmunoCare Syrup', dose: '3 ml (Once daily supplement)', notes: '', completed: false },
-  { id: 29, date: 'May 24 (Sun)', time: '6:30 PM - 7:30 PM', name: 'Prednisone Derpson Tablet', dose: 'SKIP - Evening dose discontinued (Once daily phase)', notes: 'N/A', completed: false },
-  { id: 30, date: 'May 24 (Sun)', time: '9:00 PM', name: 'Cytriboost Syrup', dose: '3 ml (2nd dose; Give after or with a meal)', notes: '', completed: false },
-  { id: 31, date: 'May 25 (Mon)', time: '6:30 AM - 7:00 AM', name: 'Cytriboost Syrup', dose: '3 ml (Give after or with a meal)', notes: '', completed: false },
-  { id: 32, date: 'May 25 (Mon)', time: '9:00 AM', name: 'Prednisone Derpson Tablet', dose: '1 tablet (Once daily phase; Give with snack)', notes: '', completed: false },
-  { id: 33, date: 'May 25 (Mon)', time: '12:30 PM - 1:00 PM', name: 'Papi Bion Syrup', dose: '2 ml (Once daily supplement)', notes: '', completed: false },
-  { id: 34, date: 'May 25 (Mon)', time: '1:30 PM - 2:00 PM', name: 'ImmunoCare Syrup', dose: '3 ml (Once daily supplement)', notes: '', completed: false },
-  { id: 35, date: 'May 25 (Mon)', time: '9:00 PM', name: 'Cytriboost Syrup', dose: '3 ml (2nd dose; Give after or with a meal)', notes: '', completed: false },
-  { id: 36, date: 'May 26 (Tue)', time: '6:30 AM - 7:00 AM', name: 'Cytriboost Syrup', dose: '3 ml (Give after or with a meal)', notes: '', completed: false },
-  { id: 37, date: 'May 26 (Tue)', time: '9:00 AM', name: 'Prednisone Derpson Tablet', dose: '1 tablet (Once daily phase; Give with snack)', notes: '', completed: false },
-  { id: 38, date: 'May 26 (Tue)', time: '12:30 PM - 1:00 PM', name: 'Papi Bion Syrup', dose: '2 ml (Once daily supplement)', notes: '', completed: false },
-  { id: 39, date: 'May 26 (Tue)', time: '1:30 PM - 2:00 PM', name: 'ImmunoCare Syrup', dose: '3 ml (Once daily supplement)', notes: '', completed: false },
-  { id: 40, date: 'May 26 (Tue)', time: '9:00 PM', name: 'Cytriboost Syrup', dose: '3 ml (2nd dose; Give after or with a meal)', notes: '', completed: false },
-  { id: 41, date: 'May 27 (Wed)', time: '6:30 AM - 7:00 AM', name: 'Cytriboost Syrup', dose: '3 ml (Give after or with a meal)', notes: '', completed: false },
-  { id: 42, date: 'May 27 (Wed)', time: '9:00 AM', name: 'Prednisone Derpson Tablet', dose: '1 tablet (Once daily phase; Give with snack)', notes: '', completed: false },
-  { id: 43, date: 'May 27 (Wed)', time: '12:30 PM - 1:00 PM', name: 'Papi Bion Syrup', dose: '2 ml (Once daily supplement)', notes: '', completed: false },
-  { id: 44, date: 'May 27 (Wed)', time: '1:30 PM - 2:00 PM', name: 'ImmunoCare Syrup', dose: '3 ml (Once daily supplement)', notes: '', completed: false },
-  { id: 45, date: 'May 27 (Wed)', time: '9:00 PM', name: 'Cytriboost Syrup', dose: '3 ml (2nd dose; Give after or with a meal)', notes: '', completed: false },
-  { id: 46, date: 'May 28 (Thu)', time: '6:30 AM - 7:00 AM', name: 'Cytriboost Syrup', dose: '3 ml (Give after or with a meal)', notes: '', completed: false },
-  { id: 47, date: 'May 28 (Thu)', time: '9:00 AM', name: 'Prednisone Derpson Tablet', dose: '1 tablet (Once daily phase; Give with snack)', notes: '', completed: false },
-  { id: 48, date: 'May 28 (Thu)', time: '12:30 PM - 1:00 PM', name: 'Papi Bion Syrup', dose: '2 ml (Once daily supplement)', notes: '', completed: false },
-  { id: 49, date: 'May 28 (Thu)', time: '1:30 PM - 2:00 PM', name: 'ImmunoCare Syrup', dose: '3 ml (Once daily supplement)', notes: '', completed: false },
-  { id: 50, date: 'May 28 (Thu)', time: '9:00 PM', name: 'Cytriboost Syrup', dose: '3 ml (2nd dose; Give after or with a meal)', notes: '', completed: false },
-  { id: 51, date: 'May 29 (Fri)', time: '6:30 AM - 7:00 AM', name: 'Cytriboost Syrup', dose: 'FINAL MORNING DOSE: 3 ml (Give after/with a meal)', notes: '', completed: false },
-  { id: 52, date: 'May 29 (Fri)', time: '9:00 AM', name: 'Prednisone Derpson Tablet', dose: '1 tablet (Once daily phase; Give with snack)', notes: '', completed: false },
-  { id: 53, date: 'May 29 (Fri)', time: '12:30 PM - 1:00 PM', name: 'Papi Bion Syrup', dose: '2 ml (Once daily supplement)', notes: '', completed: false },
-  { id: 54, date: 'May 29 (Fri)', time: '1:30 PM - 2:00 PM', name: 'ImmunoCare Syrup', dose: '3 ml (Once daily supplement)', notes: '', completed: false },
-  { id: 55, date: 'May 29 (Fri)', time: '9:00 PM', name: 'Cytriboost Syrup', dose: 'FINAL EVENING DOSE: 3 ml (Regimen Completed)', notes: '', completed: false },
-  { id: 56, date: 'May 30 (Sat)', time: '9:00 AM', name: 'Prednisone Derpson Tablet', dose: '1 tablet (Once daily phase; Give with snack)', notes: '', completed: false },
-  { id: 57, date: 'May 30 (Sat)', time: '12:30 PM - 1:00 PM', name: 'Papi Bion Syrup', dose: '2 ml (Once daily supplement)', notes: '', completed: false },
-  { id: 58, date: 'May 30 (Sat)', time: '1:30 PM - 2:00 PM', name: 'ImmunoCare Syrup', dose: '3 ml (Once daily supplement)', notes: '', completed: false }
+const sample = [
+  {date:'May 20 (Wed)', entries:[
+    {time:'6:30 AM - 7:00 AM', med:'Cytriboost Syrup', instr:'3 ml (Give after or with a meal)', status:'clear'},
+    {time:'9:00 AM', med:'Prednisone Derpson Tablet', instr:'1 tablet (Give with snack/small treats)', status:'clear'},
+    {time:'12:30 PM - 1:00 PM', med:'Papi Bion Syrup', instr:'2 ml (Once daily supplement)', status:'clear'},
+    {time:'1:30 PM - 2:00 PM', med:'ImmunoCare Syrup', instr:'3 ml (Once daily supplement)', status:'clear'},
+    {time:'6:30 PM - 7:30 PM', med:'Prednisone Derpson Tablet', instr:'1 tablet (2nd dose; Give with snack/treats)', status:'clear'},
+    {time:'9:00 PM', med:'Cytriboost Syrup', instr:'3 ml (2nd dose; Give after or with a meal)', status:'clear'},
+  ]},
+  {date:'May 21 (Thu)', entries:[]},
+  {date:'May 22 (Fri)', entries:[]},
+  {date:'May 23 (Sat)', entries:[]},
+  {date:'May 24 (Sun)', entries:[]},
+  {date:'May 25 (Mon)', entries:[]},
+  {date:'May 26 (Tue)', entries:[]},
+  {date:'May 27 (Wed)', entries:[]},
+  {date:'May 28 (Thu)', entries:[]},
+  {date:'May 29 (Fri)', entries:[]},
+  {date:'May 30 (Sat)', entries:[]},
 ];
-
-const elements = {
-  tableBody: document.querySelector('#task-table tbody'),
-  saveButton: document.querySelector('#save-progress'),
-  saveStatus: document.querySelector('#save-status'),
-  taskCount: document.querySelector('#task-count'),
-  completedCount: document.querySelector('#completed-count'),
-  resetButton: document.querySelector('#reset-progress'),
-  settingsToggle: document.querySelector('#settings-toggle'),
-  settingsPanel: document.querySelector('#settings-panel'),
-  settingsClose: document.querySelector('#settings-close'),
-  inputToken: document.querySelector('#github-token'),
-  inputRepo: document.querySelector('#github-repo'),
-  inputPath: document.querySelector('#github-path'),
-  inputBranch: document.querySelector('#github-branch')
-};
-
-let tasks = [];
-let settings = {};
-
-function loadFromLocalStorage() {
-  const savedTasks = localStorage.getItem(STORAGE_KEYS.tasks);
-  const savedSettings = localStorage.getItem(STORAGE_KEYS.settings);
-
-  tasks = savedTasks ? JSON.parse(savedTasks) : [...DEFAULT_TASKS];
-  settings = savedSettings ? JSON.parse(savedSettings) : { ...DEFAULT_SETTINGS };
+const template = sample[0].entries;
+for(let i=1;i<sample.length;i++){
+  if(sample[i].entries.length===0) sample[i].entries = template.map(e=>Object.assign({},e));
 }
-
-function persistTasks() {
-  localStorage.setItem(STORAGE_KEYS.tasks, JSON.stringify(tasks));
+const STORAGE_KEY='binsoy_tasks_v1';
+const SETTINGS_KEY='binsoy_settings_v1';
+function loadState(){
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if(raw) return JSON.parse(raw);
+  const state = sample.map(day=>({date:day.date, entries: day.entries.map(e=>({time:e.time, med:e.med, instr:e.instr, status:e.status, done:false, na: e.status==='N/A'}))}));
+  localStorage.setItem(STORAGE_KEY,JSON.stringify(state));
+  return state;
 }
-
-function persistSettings() {
-  localStorage.setItem(STORAGE_KEYS.settings, JSON.stringify(settings));
+function loadSettings(){
+  try{return JSON.parse(localStorage.getItem(SETTINGS_KEY)||'null')||{};}catch(e){return{}}
 }
-
-function updateSummary() {
-  const total = tasks.length;
-  const completed = tasks.filter(task => task.completed).length;
-  elements.taskCount.textContent = `${total} items`;
-  elements.completedCount.textContent = `${completed} completed`;
-}
-
-function renderTasks() {
-  elements.tableBody.innerHTML = '';
-
-  let currentDate = null;
-  tasks.forEach(task => {
-    if (task.date !== currentDate) {
-      currentDate = task.date;
-      const dateRow = document.createElement('tr');
-      dateRow.className = 'date-group-row';
-      dateRow.innerHTML = `<td colspan="5">${task.date}</td>`;
-      elements.tableBody.appendChild(dateRow);
-    }
-
-    const row = document.createElement('tr');
-    row.innerHTML = `
-      <td>${task.time}</td>
-      <td>${task.name}</td>
-      <td>${task.dose}</td>
-      <td>${task.notes || '—'}</td>
-      <td class="checkbox-cell"><input type="checkbox" data-id="${task.id}" ${task.completed ? 'checked' : ''}></td>
-    `;
-    elements.tableBody.appendChild(row);
-  });
-
-  elements.tableBody.querySelectorAll('input[type="checkbox"]').forEach(input => {
-    input.addEventListener('change', event => {
-      const id = Number(event.target.dataset.id);
-      const item = tasks.find(task => task.id === id);
-      if (!item) return;
-      item.completed = event.target.checked;
-      persistTasks();
-      updateSummary();
-      showStatus('Progress saved locally. Tap Save Progress to publish to GitHub.');
+let state = loadState();
+const settings = loadSettings();
+const list = document.getElementById('list');
+function render(){
+  list.innerHTML='';
+  state.forEach((day,di)=>{
+    const card = document.createElement('div');card.className='card';
+    const h = document.createElement('div');h.className='day-header';
+    const left = document.createElement('div');left.innerHTML=`<div class="date-title">${day.date}</div><div class="small muted">${day.entries.length} items</div>`;
+    const right = document.createElement('div');
+    const toggle = document.createElement('button');toggle.className='ghost';toggle.textContent='Toggle';
+    toggle.onclick=()=>{items.style.display = items.style.display==='none'?'grid':'none'};
+    right.appendChild(toggle);
+    h.appendChild(left);h.appendChild(right);
+    card.appendChild(h);
+    const items = document.createElement('div');items.className='items';
+    day.entries.forEach((it,ii)=>{
+      const item = document.createElement('div');item.className='item';
+      const cb = document.createElement('input');cb.type='checkbox';cb.className='checkbox';cb.checked=!!it.done;cb.disabled=!!it.na;
+      cb.onchange=()=>{it.done=cb.checked; saveLocal(false);}
+      const meta = document.createElement('div');meta.className='meta';meta.innerHTML=`<div class="time">${it.time}</div><div class="med">${it.med}</div><div class="instr">${it.instr}</div>`;
+      const status = document.createElement('div');status.className='status';
+      const badge = document.createElement('div');badge.className='small muted';badge.textContent=it.na? 'N/A' : (it.done? 'Done':'Clear');
+      status.appendChild(cb);status.appendChild(badge);
+      item.appendChild(meta);item.appendChild(status);
+      items.appendChild(item);
     });
+    card.appendChild(items);
+    list.appendChild(card);
   });
+  document.getElementById('lastSaved').textContent = 'Last saved: ' + (localStorage.getItem('binsoy_lastsave')||'never');
+}
+function saveLocal(markTime=true){
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  if(markTime) localStorage.setItem('binsoy_lastsave', new Date().toLocaleString());
+  document.getElementById('lastSaved').textContent = 'Last saved: ' + (localStorage.getItem('binsoy_lastsave')||'never');
+}
+async function githubSave(){
+  const s = JSON.parse(localStorage.getItem(SETTINGS_KEY)||'null');
+  if(!s || !s.token || !s.repo){throw new Error('Missing settings')}
+  const [owner,repo] = s.repo.split('/');
+  if(!owner || !repo) throw new Error('Repo must be owner/repo');
+  const path = s.path || 'tasks.json';
+  const apiBase = 'https://api.github.com';
+  const content = btoa(unescape(encodeURIComponent(JSON.stringify({state, savedAt: new Date().toISOString()}, null, 2))));
+  const headers = {Authorization: 'token ' + s.token, 'Content-Type':'application/json'};
+  const getUrl = `${apiBase}/repos/${owner}/${repo}/contents/${encodeURIComponent(path)}`;
+  let sha = null;
+  const getRes = await fetch(getUrl, {headers});
+  if(getRes.status===200){const data = await getRes.json();sha = data.sha}
+  const putUrl = `${apiBase}/repos/${owner}/${repo}/contents/${encodeURIComponent(path)}`;
+  const body = {message:'Update tasks via Binsoy Treatment Tracker', content, committer:{name:'Binsoy Tracker',email:'noreply@example.com'}};
+  if(sha) body.sha = sha;
+  const putRes = await fetch(putUrl, {method:'PUT', headers, body: JSON.stringify(body)});
+  if(!putRes.ok){const txt = await putRes.text(); throw new Error('GitHub save failed: '+putRes.status+' '+txt)}
+  return await putRes.json();
 }
 
-function showStatus(message, isError = false) {
-  elements.saveStatus.textContent = message;
-  elements.saveStatus.style.color = isError ? '#b91c1c' : '#0f172a';
-}
+document.getElementById('save').addEventListener('click', async ()=>{
+  saveLocal(true);
+  try{
+    document.getElementById('save').textContent='Saving...';
+    await githubSave();
+    localStorage.setItem('binsoy_lastsave', new Date().toLocaleString());
+    document.getElementById('lastSaved').textContent='Last saved: ' + localStorage.getItem('binsoy_lastsave');
+    alert('Saved locally and to GitHub.');
+  }catch(e){
+    console.warn(e);
+    alert('Saved locally. Cloud save failed: '+e.message);
+  }finally{document.getElementById('save').textContent='Save Progress'}
+});
 
-function applySettingsToInputs() {
-  elements.inputToken.value = settings.token || '';
-  elements.inputRepo.value = settings.repo || '';
-  elements.inputPath.value = settings.path || DEFAULT_SETTINGS.path;
-  elements.inputBranch.value = settings.branch || DEFAULT_SETTINGS.branch;
-}
+document.getElementById('reset').addEventListener('click', ()=>{
+  if(!confirm('Reset all progress to unchecked?')) return;
+  state.forEach(day=>day.entries.forEach(e=>{e.done=false;}));
+  saveLocal(true);render();
+});
 
-function readSettingsFromInputs() {
-  settings.token = elements.inputToken.value.trim();
-  settings.repo = elements.inputRepo.value.trim();
-  settings.path = elements.inputPath.value.trim() || DEFAULT_SETTINGS.path;
-  settings.branch = elements.inputBranch.value.trim() || DEFAULT_SETTINGS.branch;
-  persistSettings();
-}
+document.getElementById('toggleSettings').addEventListener('click', ()=>{
+  const p = document.getElementById('settingsPanel'); p.style.display = p.style.display==='none'?'block':'none';
+  const s = loadSettings(); document.getElementById('token').value = s.token||''; document.getElementById('repo').value = s.repo||''; document.getElementById('path').value = s.path||'tasks.json';
+});
 
-function toggleSettingsPanel() {
-  elements.settingsPanel.classList.toggle('hidden');
-}
+document.getElementById('saveSettings').addEventListener('click', ()=>{
+  const token = document.getElementById('token').value.trim();
+  const repo = document.getElementById('repo').value.trim();
+  const path = document.getElementById('path').value.trim()||'tasks.json';
+  const obj = {token, repo, path};
+  localStorage.setItem(SETTINGS_KEY, JSON.stringify(obj));
+  alert('Settings saved locally.');
+  document.getElementById('settingsPanel').style.display='none';
+});
 
-function encodeBase64(str) {
-  return btoa(unescape(encodeURIComponent(str)));
-}
+document.getElementById('clearSettings').addEventListener('click', ()=>{
+  if(!confirm('Clear stored GitHub token and repo?')) return;
+  localStorage.removeItem(SETTINGS_KEY);
+  document.getElementById('token').value='';document.getElementById('repo').value='';
+  alert('Cleared.');
+});
 
-async function getExistingFileSha() {
-  const repo = settings.repo;
-  const branch = settings.branch || DEFAULT_SETTINGS.branch;
-  if (!repo) {
-    throw new Error('Repository name is required.');
-  }
+document.getElementById('expandAll').addEventListener('click', ()=>{document.querySelectorAll('.items').forEach(n=>n.style.display='grid')});
+document.getElementById('collapseAll').addEventListener('click', ()=>{document.querySelectorAll('.items').forEach(n=>n.style.display='none')});
 
-  const url = `https://api.github.com/repos/${repo}/contents/${encodeURIComponent(settings.path)}?ref=${encodeURIComponent(branch)}`;
-  const response = await fetch(url, {
-    headers: {
-      Authorization: `token ${settings.token}`,
-      Accept: 'application/vnd.github+json'
-    }
-  });
-
-  if (response.status === 404) {
-    return null;
-  }
-
-  if (!response.ok) {
-    const errorText = await response.text();
-    throw new Error(`Could not check existing file: ${response.status} ${errorText}`);
-  }
-
-  const data = await response.json();
-  return data.sha;
-}
-
-async function saveToGitHub() {
-  if (!settings.token) {
-    throw new Error('GitHub token is required.');
-  }
-  if (!settings.repo) {
-    throw new Error('GitHub repository is required.');
-  }
-
-  const content = {
-    savedAt: new Date().toISOString(),
-    tasks
-  };
-  const jsonText = JSON.stringify(content, null, 2);
-  const encoded = encodeBase64(jsonText);
-  const sha = await getExistingFileSha();
-
-  const body = {
-    message: `Save tracker progress: ${new Date().toLocaleString()}`,
-    content: encoded,
-    branch: settings.branch || DEFAULT_SETTINGS.branch
-  };
-
-  if (sha) {
-    body.sha = sha;
-  }
-
-  const url = `https://api.github.com/repos/${settings.repo}/contents/${encodeURIComponent(settings.path)}`;
-  const response = await fetch(url, {
-    method: 'PUT',
-    headers: {
-      Authorization: `token ${settings.token}`,
-      Accept: 'application/vnd.github+json',
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(body)
-  });
-
-  if (!response.ok) {
-    const errorData = await response.json().catch(() => null);
-    throw new Error(errorData?.message || `GitHub save failed with status ${response.status}`);
-  }
-}
-
-async function handleSaveProgress() {
-  persistTasks();
-  readSettingsFromInputs();
-  showStatus('Saving to GitHub...', false);
-  try {
-    await saveToGitHub();
-    showStatus('Saved to GitHub successfully.');
-  } catch (error) {
-    showStatus(`GitHub save failed: ${error.message}`, true);
-  }
-}
-
-function handleResetProgress() {
-  if (!confirm('Restore default progress and clear local saved state?')) {
-    return;
-  }
-  tasks = [...DEFAULT_TASKS];
-  persistTasks();
-  renderTasks();
-  updateSummary();
-  showStatus('Local progress reset.');
-}
-
-function wireEvents() {
-  elements.saveButton.addEventListener('click', handleSaveProgress);
-  elements.resetButton.addEventListener('click', handleResetProgress);
-  elements.settingsToggle.addEventListener('click', () => {
-    toggleSettingsPanel();
-  });
-  elements.settingsClose.addEventListener('click', () => {
-    toggleSettingsPanel();
-  });
-
-  [
-    elements.inputToken,
-    elements.inputRepo,
-    elements.inputPath,
-    elements.inputBranch
-  ].forEach(input => {
-    input.addEventListener('input', () => {
-      readSettingsFromInputs();
-      showStatus('Settings updated locally.');
-    });
-  });
-}
-
-function init() {
-  loadFromLocalStorage();
-  applySettingsToInputs();
-  renderTasks();
-  updateSummary();
-  wireEvents();
-}
-
-init();
+render();

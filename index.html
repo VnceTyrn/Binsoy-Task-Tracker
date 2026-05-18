@@ -1,84 +1,59 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Medication / Task Tracker</title>
-  <link rel="stylesheet" href="styles.css" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Binsoy Treatment Tracker</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="page-shell">
-    <header class="topbar">
-      <div>
-        <p class="eyebrow">Task Tracker</p>
-        <h1>Medication Schedule</h1>
+  <header>
+    <div class="logo"><img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='%23ff7043' d='M12 2c-1.7 0-3 1.1-3 2.5S10 7 12 7s3-1.1 3-2.5S13.7 2 12 2z'/><path fill='%236d4c41' d='M6.5 8C4 8 2 10 2 12.5S4 17 6.5 17 11 15 11 12.5 9 8 6.5 8z'/><path fill='%23ffcc80' d='M17.5 8c2.5 0 4.5 2 4.5 4.5S20 17 17.5 17 13 15 13 12.5 15 8 17.5 8z'/></svg>" alt="dog"></div>
+    <div>
+      <h1>Binsoy Treatment Tracker</h1>
+      <div class="subtitle">Pet-friendly — simple, mobile-first</div>
+    </div>
+    <div style="margin-left:auto" class="settings">
+      <button id="toggleSettings" class="ghost">⚙️ Settings</button>
+    </div>
+  </header>
+  <main>
+    <div class="controls">
+      <div class="left-controls">
+        <div class="pill small muted" id="lastSaved">Last saved: never</div>
       </div>
-      <button id="settings-toggle" class="icon-button" aria-label="Toggle settings">⚙️</button>
-    </header>
+      <div style="display:flex;gap:8px">
+        <button id="expandAll" class="ghost">Expand All</button>
+        <button id="collapseAll" class="ghost">Collapse All</button>
+      </div>
+    </div>
 
-    <section class="hero-card">
-      <p class="hero-copy">Tap each checkbox as you complete a medication or task. Your progress saves locally automatically, and you can publish it to GitHub when ready.</p>
-    </section>
+    <div id="list"></div>
 
-    <section class="content-card">
-      <div class="table-toolbar">
+    <div class="card" id="settingsPanel" style="display:none">
+      <div style="display:flex;gap:8px;align-items:center;justify-content:space-between">
         <div>
-          <span id="task-count"></span>
-          <span id="completed-count"></span>
+          <div style="font-weight:700">Hidden Settings</div>
+          <div class="small muted">Enter your GitHub token and repository (owner/repo) to enable cloud save.</div>
         </div>
-        <button id="reset-progress" class="secondary-button">Reset Local Progress</button>
-      </div>
-
-      <div class="table-scroll">
-        <table id="task-table">
-          <thead>
-            <tr>
-              <th>Time</th>
-              <th>Medication / Task</th>
-              <th>Dosage</th>
-              <th>Notes</th>
-              <th>Done</th>
-            </tr>
-          </thead>
-          <tbody></tbody>
-        </table>
-      </div>
-    </section>
-
-    <section class="actions-card">
-      <button id="save-progress" class="primary-button">Save Progress to GitHub</button>
-      <p class="status-message" id="save-status">Local progress is saved automatically.</p>
-    </section>
-
-    <section id="settings-panel" class="settings-card hidden">
-      <div class="settings-header">
-        <div>
-          <h2>Hidden Settings</h2>
-          <p>Stored locally in this browser only.</p>
+        <div style="display:flex;gap:8px">
+          <button id="saveSettings">Save</button>
+          <button id="clearSettings" class="ghost">Clear</button>
         </div>
-        <button id="settings-close" class="icon-button" aria-label="Close settings">✕</button>
       </div>
+      <div style="margin-top:12px;display:grid;gap:8px">
+        <input id="token" placeholder="Personal access token" class="pill" style="padding:10px">
+        <input id="repo" placeholder="Repository (owner/repo)" class="pill" style="padding:10px">
+        <input id="path" placeholder="File path to save (tasks.json)" class="pill" style="padding:10px" value="tasks.json">
+      </div>
+    </div>
 
-      <div class="form-group">
-        <label for="github-token">GitHub Token</label>
-        <input id="github-token" type="password" autocomplete="off" placeholder="ghp_xxx..." />
-      </div>
-      <div class="form-group">
-        <label for="github-repo">Repository</label>
-        <input id="github-repo" type="text" placeholder="owner/repo" />
-      </div>
-      <div class="form-group">
-        <label for="github-path">Save path</label>
-        <input id="github-path" type="text" placeholder="schedule-progress.json" />
-      </div>
-      <div class="form-group">
-        <label for="github-branch">Branch</label>
-        <input id="github-branch" type="text" placeholder="main" />
-      </div>
-      <p class="small-note">Your PAT and repo settings stay in local storage for this browser and device only.</p>
-    </section>
-  </div>
+  </main>
 
-  <script src="script.js"></script>
+  <footer>
+    <button id="reset" class="ghost">Reset Progress</button>
+    <button id="save" title="Save locally and to GitHub">Save Progress</button>
+  </footer>
+  <script src="script.js" defer></script>
 </body>
 </html>

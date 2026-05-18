@@ -1,32 +1,97 @@
 const sample = [
   {date:'May 20 (Wed)', entries:[
     {time:'6:30 AM - 7:00 AM', med:'Cytriboost Syrup', instr:'3 ml (Give after or with a meal)', status:'clear'},
-    {time:'9:00 AM', med:'Prednisone Derpson Tablet', instr:'1 tablet (Give with snack/small treats)', status:'clear'},
+    {time:'[Phase 1: Dual] 9:00 AM', med:'Prednisone Derpson Tablet', instr:'1 tablet (Morning Dose)', status:'clear'},
     {time:'12:30 PM - 1:00 PM', med:'Papi Bion Syrup', instr:'2 ml (Once daily supplement)', status:'clear'},
     {time:'1:30 PM - 2:00 PM', med:'ImmunoCare Syrup', instr:'3 ml (Once daily supplement)', status:'clear'},
-    {time:'6:30 PM - 7:30 PM', med:'Prednisone Derpson Tablet', instr:'1 tablet (2nd dose; Give with snack/treats)', status:'clear'},
+    {time:'6:30 PM - 7:30 PM', med:'Prednisone Derpson Tablet', instr:'1 tablet (Evening Dose)', status:'clear'},
     {time:'9:00 PM', med:'Cytriboost Syrup', instr:'3 ml (2nd dose; Give after or with a meal)', status:'clear'},
   ]},
-  {date:'May 21 (Thu)', entries:[]},
-  {date:'May 22 (Fri)', entries:[]},
-  {date:'May 23 (Sat)', entries:[]},
-  {date:'May 24 (Sun)', entries:[]},
-  {date:'May 25 (Mon)', entries:[]},
-  {date:'May 26 (Tue)', entries:[]},
-  {date:'May 27 (Wed)', entries:[]},
-  {date:'May 28 (Thu)', entries:[]},
-  {date:'May 29 (Fri)', entries:[]},
-  {date:'May 30 (Sat)', entries:[]},
+  {date:'May 21 (Thu)', entries:[
+    {time:'6:30 AM - 7:00 AM', med:'Cytriboost Syrup', instr:'3 ml (Give after or with a meal)', status:'clear'},
+    {time:'[Phase 1: Dual] 9:00 AM', med:'Prednisone Derpson Tablet', instr:'1 tablet (Morning Dose)', status:'clear'},
+    {time:'12:30 PM - 1:00 PM', med:'Papi Bion Syrup', instr:'2 ml (Once daily supplement)', status:'clear'},
+    {time:'1:30 PM - 2:00 PM', med:'ImmunoCare Syrup', instr:'3 ml (Once daily supplement)', status:'clear'},
+    {time:'6:30 PM - 7:30 PM', med:'Prednisone Derpson Tablet', instr:'1 tablet (Evening Dose)', status:'clear'},
+    {time:'9:00 PM', med:'Cytriboost Syrup', instr:'3 ml (2nd dose; Give after or with a meal)', status:'clear'},
+  ]},
+  {date:'May 22 (Fri)', entries:[
+    {time:'6:30 AM - 7:00 AM', med:'Cytriboost Syrup', instr:'3 ml (Give after or with a meal)', status:'clear'},
+    {time:'[Phase 1: Dual] 9:00 AM', med:'Prednisone Derpson Tablet', instr:'1 tablet (Morning Dose)', status:'clear'},
+    {time:'12:30 PM - 1:00 PM', med:'Papi Bion Syrup', instr:'2 ml (Once daily supplement)', status:'clear'},
+    {time:'1:30 PM - 2:00 PM', med:'ImmunoCare Syrup', instr:'3 ml (Once daily supplement)', status:'clear'},
+    {time:'6:30 PM - 7:30 PM', med:'Prednisone Derpson Tablet', instr:'1 tablet (Evening Dose)', status:'clear'},
+    {time:'9:00 PM', med:'Cytriboost Syrup', instr:'3 ml (2nd dose; Give after or with a meal)', status:'clear'},
+  ]},
+  {date:'May 23 (Sat)', entries:[
+    {time:'6:30 AM - 7:00 AM', med:'Cytriboost Syrup', instr:'3 ml (Give after or with a meal)', status:'clear'},
+    {time:'[Phase 1: Dual] 9:00 AM', med:'Prednisone Derpson Tablet', instr:'1 tablet (Morning Dose)', status:'clear'},
+    {time:'12:30 PM - 1:00 PM', med:'Papi Bion Syrup', instr:'2 ml (Once daily supplement)', status:'clear'},
+    {time:'1:30 PM - 2:00 PM', med:'ImmunoCare Syrup', instr:'3 ml (Once daily supplement)', status:'clear'},
+    {time:'6:30 PM - 7:30 PM', med:'Prednisone Derpson Tablet', instr:'1 tablet (Evening Dose)', status:'clear'},
+    {time:'9:00 PM', med:'Cytriboost Syrup', instr:'3 ml (2nd dose; Give after or with a meal)', status:'clear'},
+  ]},
+  {date:'May 24 (Sun)', entries:[
+    {time:'6:30 AM - 7:00 AM', med:'Cytriboost Syrup', instr:'3 ml (Give after or with a meal)', status:'clear'},
+    {time:'[Phase 2: Single] 9:00 AM', med:'Prednisone Derpson Tablet', instr:'1 TABLET ONLY FOR THE DAY (Phase Change: Once Daily)', status:'clear'},
+    {time:'12:30 PM - 1:00 PM', med:'Papi Bion Syrup', instr:'2 ml (Once daily supplement)', status:'clear'},
+    {time:'1:30 PM - 2:00 PM', med:'ImmunoCare Syrup', instr:'3 ml (Once daily supplement)', status:'clear'},
+    {time:'6:30 PM - 7:30 PM', med:'Prednisone Derpson Tablet', instr:'DISCONTINUED / OMITTED FROM LOGIC (Once Daily Phase)', status:'N/A'},
+    {time:'9:00 PM', med:'Cytriboost Syrup', instr:'3 ml (2nd dose; Give after or with a meal)', status:'clear'},
+  ]},
+  {date:'May 25 (Mon)', entries:[
+    {time:'6:30 AM - 7:00 AM', med:'Cytriboost Syrup', instr:'3 ml (Give after or with a meal)', status:'clear'},
+    {time:'[Phase 2: Single] 9:00 AM', med:'Prednisone Derpson Tablet', instr:'1 TABLET ONLY FOR THE DAY (Once Daily Phase)', status:'clear'},
+    {time:'12:30 PM - 1:00 PM', med:'Papi Bion Syrup', instr:'2 ml (Once daily supplement)', status:'clear'},
+    {time:'1:30 PM - 2:00 PM', med:'ImmunoCare Syrup', instr:'3 ml (Once daily supplement)', status:'clear'},
+    {time:'9:00 PM', med:'Cytriboost Syrup', instr:'3 ml (2nd dose; Give after or with a meal)', status:'clear'},
+  ]},
+  {date:'May 26 (Tue)', entries:[
+    {time:'6:30 AM - 7:00 AM', med:'Cytriboost Syrup', instr:'3 ml (Give after or with a meal)', status:'clear'},
+    {time:'[Phase 2: Single] 9:00 AM', med:'Prednisone Derpson Tablet', instr:'1 TABLET ONLY FOR THE DAY (Once Daily Phase)', status:'clear'},
+    {time:'12:30 PM - 1:00 PM', med:'Papi Bion Syrup', instr:'2 ml (Once daily supplement)', status:'clear'},
+    {time:'1:30 PM - 2:00 PM', med:'ImmunoCare Syrup', instr:'3 ml (Once daily supplement)', status:'clear'},
+    {time:'9:00 PM', med:'Cytriboost Syrup', instr:'3 ml (2nd dose; Give after or with a meal)', status:'clear'},
+  ]},
+  {date:'May 27 (Wed)', entries:[
+    {time:'6:30 AM - 7:00 AM', med:'Cytriboost Syrup', instr:'3 ml (Give after or with a meal)', status:'clear'},
+    {time:'[Phase 2: Single] 9:00 AM', med:'Prednisone Derpson Tablet', instr:'1 TABLET ONLY FOR THE DAY (Once Daily Phase)', status:'clear'},
+    {time:'12:30 PM - 1:00 PM', med:'Papi Bion Syrup', instr:'2 ml (Once daily supplement)', status:'clear'},
+    {time:'1:30 PM - 2:00 PM', med:'ImmunoCare Syrup', instr:'3 ml (Once daily supplement)', status:'clear'},
+    {time:'9:00 PM', med:'Cytriboost Syrup', instr:'3 ml (2nd dose; Give after or with a meal)', status:'clear'},
+  ]},
+  {date:'May 28 (Thu)', entries:[
+    {time:'6:30 AM - 7:00 AM', med:'Cytriboost Syrup', instr:'3 ml (Give after or with a meal)', status:'clear'},
+    {time:'[Phase 2: Single] 9:00 AM', med:'Prednisone Derpson Tablet', instr:'1 TABLET ONLY FOR THE DAY (Once Daily Phase)', status:'clear'},
+    {time:'12:30 PM - 1:00 PM', med:'Papi Bion Syrup', instr:'2 ml (Once daily supplement)', status:'clear'},
+    {time:'1:30 PM - 2:00 PM', med:'ImmunoCare Syrup', instr:'3 ml (Once daily supplement)', status:'clear'},
+    {time:'9:00 PM', med:'Cytriboost Syrup', instr:'3 ml (2nd dose; Give after or with a meal)', status:'clear'},
+  ]},
+  {date:'May 29 (Fri)', entries:[
+    {time:'6:30 AM - 7:00 AM', med:'Cytriboost Syrup', instr:'FINAL MORNING DOSE: 3 ml (Give after or with a meal)', status:'clear'},
+    {time:'[Phase 2: Single] 9:00 AM', med:'Prednisone Derpson Tablet', instr:'1 TABLET ONLY FOR THE DAY (Once Daily Phase)', status:'clear'},
+    {time:'12:30 PM - 1:00 PM', med:'Papi Bion Syrup', instr:'2 ml (Once daily supplement)', status:'clear'},
+    {time:'1:30 PM - 2:00 PM', med:'ImmunoCare Syrup', instr:'3 ml (Once daily supplement)', status:'clear'},
+    {time:'9:00 PM', med:'Cytriboost Syrup', instr:'FINAL EVENING DOSE: 3 ml (Regimen Completed)', status:'clear'},
+  ]},
+  {date:'May 30 (Sat)', entries:[
+    {time:'9:00 AM', med:'Prednisone Derpson Tablet', instr:'1 TABLET ONLY FOR THE DAY (Once Daily Phase)', status:'clear'},
+    {time:'[Phase 2: Single] 12:30 PM - 1:00 PM', med:'Papi Bion Syrup', instr:'2 ml (Once daily supplement)', status:'clear'},
+    {time:'1:30 PM - 2:00 PM', med:'ImmunoCare Syrup', instr:'3 ml (Once daily supplement)', status:'clear'},
+  ]},
 ];
-const template = sample[0].entries;
-for(let i=1;i<sample.length;i++){
-  if(sample[i].entries.length===0) sample[i].entries = template.map(e=>Object.assign({},e));
-}
 const STORAGE_KEY='binsoy_tasks_v1';
 const SETTINGS_KEY='binsoy_settings_v1';
 function loadState(){
   const raw = localStorage.getItem(STORAGE_KEY);
-  if(raw) return JSON.parse(raw);
+  if(raw){
+    try{
+      const parsed = JSON.parse(raw);
+      if(Array.isArray(parsed) && parsed.length===sample.length && parsed.every((day,i)=>day.date===sample[i].date)){
+        return parsed;
+      }
+    }catch(e){}
+  }
   const state = sample.map(day=>({date:day.date, entries: day.entries.map(e=>({time:e.time, med:e.med, instr:e.instr, status:e.status, done:false, na: e.status==='N/A'}))}));
   localStorage.setItem(STORAGE_KEY,JSON.stringify(state));
   return state;

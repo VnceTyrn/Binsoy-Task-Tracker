@@ -158,6 +158,31 @@ function saveLocal(markTime=true){
 function applyTheme(theme){
   document.body.dataset.theme=theme;
   document.getElementById('toggleTheme').textContent=theme==='dark'?'☀️':'🌙';
+  document.getElementById('enableDarkMode').checked=theme==='dark';
+}
+function saveSettings(){
+  const token=document.getElementById('token').value.trim();
+  const repo=document.getElementById('repo').value.trim();
+  const path=document.getElementById('path').value.trim()||'tasks.json';
+  const reminders=document.getElementById('enableNotifications').checked;
+  const theme=document.getElementById('enableDarkMode').checked?'dark':'light';
+  settings={token,repo,path,theme,reminders};
+  localStorage.setItem(SETTINGS_KEY,JSON.stringify(settings));
+  applyTheme(theme);
+  renderSummary();
+  showAlert('Settings saved locally.',4000);
+}
+function initSettingsPanel(){
+  settings=loadSavedSettings();
+  document.getElementById('token').value=settings.token||'';
+  document.getElementById('repo').value=settings.repo||'';
+  document.getElementById('path').value=settings.path||'tasks.json';
+  document.getElementById('enableNotifications').checked=!!settings.reminders;
+  document.getElementById('enableDarkMode').checked=settings.theme==='dark';
+  applyTheme(settings.theme||'light');
+}
+function toggleSettingsPanel(open){
+  document.getElementById('settingsPanel').style.display=open?'block':'none';
 }
 // Settings UI removed: saveSettings, initSettingsPanel, and toggleSettingsPanel removed.
 function showAlert(message,duration=5000){
@@ -202,7 +227,6 @@ function showReminder(entry,day){
   showAlert(message,7000);
 }
 function checkReminders(){
-  // Use default settings (reminders off by default)
   settings = loadSavedSettings();
   if(!settings.reminders) return;
   const now=new Date();
@@ -223,23 +247,69 @@ function checkReminders(){
     });
   });
 }
-// githubSave removed — cloud save and settings UI were removed per user request.
-document.getElementById('save').addEventListener('click',()=>{
+function githubSave(){
+  settings=loadSavedSettings();
+  if(!settings||!settings.token||!settings.repo) throw new Error('Missing GitHub token or repository. Please save settings first.');
+  const [owner,repo]=settings.repo.split('/');
+  if(!owner||!repo) throw new Error('Repo format must be owner/repo');
+  const path=settings.path||'tasks.json';
+  const apiBase='https://api.github.com';
+  const content=btoa(unescape(encodeURIComponent(JSON.stringify({state,savedAt:new Date().toISOString()},null,2))));
+  const headers={Authorization:'token '+settings.token,'Content-Type':'application/json'};
+  return fetch(`${apiBase}/repos/${owner}/${repo}/contents/${encodeURIComponent(path)}`,{headers})
+    .then(res=>{if(!res.ok&&res.status!==404)throw new Error(`GitHub API error: ${res.status}`);return res.status===200?res.json():null;})
+    .then(data=>{
+      const sha=data?.sha;
+      const body={message:'Update task tracker progress',content,committer:{name:'Binsoy Tracker',email:'noreply@example.com'}};
+      if(sha) body.sha=sha;
+      return fetch(`${apiBase}/repos/${owner}/${repo}/contents/${encodeURIComponent(path)}`,{method:'PUT',headers,body:JSON.stringify(body)});
+    })
+    .then(res=>{if(!res.ok)throw new Error(`GitHub save failed: ${res.status}`);return res.json();});
+}
+document.getElementById('save').addEventListener('click',async()=>{
+ const s = loadSavedSettings();
+  if(!s.token || !s.repo){
+    showAlert('GitHub settings missing. Open settings to configure cloud save.',7000);
+    initSettingsPanel();
+    toggleSettingsPanel(true);
+    return;
+  }
+  try{
+    document.getElementById('save').textContent='Saving...';
+    await githubSave();
+    localStorage.setItem('binsoy_lastsave',new Date().toLocaleString());
+    renderSummary();
+    showAlert('Saved locally and to GitHub.',4000);
+  }catch(e){
+    console.warn(e);
+    showAlert('Saved locally. Cloud save failed: '+e.message,7000);
+  }finally{document.getElementById('save').textContent='Save progress';}
   saveLocal(true);
-  showAlert('Saved locally.',3000);
 });
 document.getElementById('reset').addEventListener('click',()=>{
   if(!confirm('Reset all progress to unchecked?')) return;
   state.forEach(day=>day.entries.forEach(entry=>{entry.done=false;}));
   saveLocal(true);render();
 });
-// Settings UI removed: event listeners for settings controls removed.
+document.getElementById('toggleSettings').addEventListener('click',()=>{initSettingsPanel();toggleSettingsPanel(true);});
+document.getElementById('closeSettings').addEventListener('click',()=>toggleSettingsPanel(false));
+document.getElementById('saveSettings').addEventListener('click',()=>{saveSettings();toggleSettingsPanel(false);});
+document.getElementById('clearSettings').addEventListener('click',()=>{
+  if(!confirm('Clear stored GitHub token and repo?')) return;
+  localStorage.removeItem(SETTINGS_KEY);
+  localStorage.removeItem(REMINDER_HISTORY_KEY);
+  initSettingsPanel();
+  showAlert('Saved settings cleared.',4000);
+});
 document.getElementById('expandAll').addEventListener('click',()=>document.querySelectorAll('.items').forEach(n=>n.style.display='grid'));
 document.getElementById('collapseAll').addEventListener('click',()=>document.querySelectorAll('.items').forEach(n=>n.style.display='none'));
 document.getElementById('toggleTheme').addEventListener('click',()=>{
   const current=document.body.dataset.theme==='dark'?'light':'dark';
+  document.getElementById('enableDarkMode').checked=current==='dark';
   applyTheme(current);
+  saveSettings();
 });
+saveSettings();
 render();
 setInterval(checkReminders,30000);
 checkReminders();

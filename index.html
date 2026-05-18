@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Medication / Task Tracker</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="page-shell">
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">Task Tracker</p>
+        <h1>Medication Schedule</h1>
+      </div>
+      <button id="settings-toggle" class="icon-button" aria-label="Toggle settings">⚙️</button>
+    </header>
+
+    <section class="hero-card">
+      <p class="hero-copy">Tap each checkbox as you complete a medication or task. Your progress saves locally automatically, and you can publish it to GitHub when ready.</p>
+    </section>
+
+    <section class="content-card">
+      <div class="table-toolbar">
+        <div>
+          <span id="task-count"></span>
+          <span id="completed-count"></span>
+        </div>
+        <button id="reset-progress" class="secondary-button">Reset Local Progress</button>
+      </div>
+
+      <div class="table-scroll">
+        <table id="task-table">
+          <thead>
+            <tr>
+              <th>Time</th>
+              <th>Medication / Task</th>
+              <th>Dosage</th>
+              <th>Notes</th>
+              <th>Done</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="actions-card">
+      <button id="save-progress" class="primary-button">Save Progress to GitHub</button>
+      <p class="status-message" id="save-status">Local progress is saved automatically.</p>
+    </section>
+
+    <section id="settings-panel" class="settings-card hidden">
+      <div class="settings-header">
+        <div>
+          <h2>Hidden Settings</h2>
+          <p>Stored locally in this browser only.</p>
+        </div>
+        <button id="settings-close" class="icon-button" aria-label="Close settings">✕</button>
+      </div>
+
+      <div class="form-group">
+        <label for="github-token">GitHub Token</label>
+        <input id="github-token" type="password" autocomplete="off" placeholder="ghp_xxx..." />
+      </div>
+      <div class="form-group">
+        <label for="github-repo">Repository</label>
+        <input id="github-repo" type="text" placeholder="owner/repo" />
+      </div>
+      <div class="form-group">
+        <label for="github-path">Save path</label>
+        <input id="github-path" type="text" placeholder="schedule-progress.json" />
+      </div>
+      <div class="form-group">
+        <label for="github-branch">Branch</label>
+        <input id="github-branch" type="text" placeholder="main" />
+      </div>
+      <p class="small-note">Your PAT and repo settings stay in local storage for this browser and device only.</p>
+    </section>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

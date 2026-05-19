@@ -70,7 +70,6 @@ body[data-theme='dark'] .item{background:#0f172a;}
 .med{font-size:1rem;font-weight:700;}
 .instr{color:var(--muted);font-size:0.92rem;line-height:1.5;}
 .status{display:flex;align-items:center;gap:12px;justify-content:flex-end;}
-.checkbox{width:22px;height:22px;accent:var(--accent);}
 .badge{padding:6px 10px;border-radius:999px;font-size:0.85rem;font-weight:700;}
 .badge-clear{background:rgba(22,163,74,0.12);color:var(--success);}
 .badge-na{background:rgba(148,163,184,0.14);color:var(--muted);}

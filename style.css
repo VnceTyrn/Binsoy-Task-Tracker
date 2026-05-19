@@ -81,8 +81,8 @@ body[data-theme='dark'] .item{background:#0f172a;}
 .checkbox-visual.checked::after{content:'\2713';color:#fff;font-weight:700;position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-size:14px}
 .checkbox-visual:hover{background:rgba(255,255,255,0.02)}
 
-body[data-theme='dark'] .checkbox-visual{border-color:rgba(148,163,184,0.28);background:rgba(255,255,255,0.01)}
-body[data-theme='dark'] .checkbox-visual:hover{background:rgba(255,255,255,0.03)}
+body[data-theme='dark'] .checkbox-visual{border-color:rgba(255,255,255,0.36);background:rgba(255,255,255,0.06);box-shadow:0 10px 24px rgba(2,6,23,0.35)}
+body[data-theme='dark'] .checkbox-visual:hover{background:rgba(255,255,255,0.08)}
 
 @media (max-width:720px){
   .checkbox-visual{margin-top:6px}

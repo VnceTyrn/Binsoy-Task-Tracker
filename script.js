@@ -154,21 +154,22 @@ function render(){
       const meta=document.createElement('div');meta.className='meta';
       meta.innerHTML=`<div class="time">${entry.time}</div><div class="med">${entry.med}</div><div class="instr">${entry.instr}</div>`;
       const status=document.createElement('div');status.className='status';
+      const checkboxVis=document.createElement('span');
+      checkboxVis.className='checkbox-visual '+(entry.done?'checked':'');
+      checkboxVis.setAttribute('role','button');
+      checkboxVis.tabIndex=0;
+      checkboxVis.addEventListener('click',()=>{ entry.done = !entry.done; saveLocal(false); render(); });
+      checkboxVis.addEventListener('keydown',(e)=>{ if(e.key==='Enter' || e.key===' '){ e.preventDefault(); checkboxVis.click(); }});
       const badge=document.createElement('div');badge.className='badge '+(entry.na?'badge-na':entry.done?'badge-done':'badge-pending');
       badge.textContent=entry.na?'N/A':entry.done?'Done':'Pending';
       if(!entry.na){
         badge.classList.add('clickable');
         badge.setAttribute('role','button');
         badge.tabIndex=0;
-        badge.addEventListener('click',()=>{
-          entry.done = !entry.done;
-          saveLocal(false);
-          render();
-        });
-        badge.addEventListener('keydown',(e)=>{
-          if(e.key==='Enter' || e.key===' '){ e.preventDefault(); badge.click(); }
-        });
+        badge.addEventListener('click',()=>{ entry.done = !entry.done; saveLocal(false); render(); });
+        badge.addEventListener('keydown',(e)=>{ if(e.key==='Enter' || e.key===' '){ e.preventDefault(); badge.click(); }});
       }
+      status.appendChild(checkboxVis);
       status.appendChild(badge);
       item.appendChild(meta);item.appendChild(status);
       items.appendChild(item);

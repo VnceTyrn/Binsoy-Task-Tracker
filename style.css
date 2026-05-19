@@ -74,6 +74,16 @@ body[data-theme='dark'] .item{background:#0f172a;}
 .badge.clickable{cursor:pointer;}
 .badge.clickable:focus{outline:2px solid rgba(20,184,166,0.12);outline-offset:4px;border-radius:999px;}
 .badge-clear{background:rgba(22,163,74,0.12);color:var(--success);}
+
+/* visible checkbox next to badge */
+.checkbox-visual{display:inline-block;width:22px;height:22px;border:2px solid var(--border);border-radius:6px;background:transparent;margin-right:8px;flex-shrink:0}
+.checkbox-visual.checked{background:var(--accent);border-color:var(--accent-strong);position:relative}
+.checkbox-visual.checked::after{content:'\2713';color:#fff;font-weight:700;position:absolute;left:50%;top:50%;transform:translate(-50%,-55%);font-size:14px}
+.checkbox-visual{cursor:pointer}
+
+@media (max-width:720px){
+  .checkbox-visual{margin-top:4px}
+}
 .badge-na{background:rgba(148,163,184,0.14);color:var(--muted);}
 .badge-done{background:rgba(20,184,166,0.16);color:var(--accent-strong);}
 .badge-pending{background:rgba(22,163,74,0.12);color:var(--success);}

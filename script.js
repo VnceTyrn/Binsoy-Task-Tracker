@@ -1,108 +1,132 @@
 ﻿const sample = [
   {date:'May 20 (Wed)', phase:'Phase 1: Dual', entries:[
-    {time:'6:30 AM - 7:00 AM', med:'Cytriboost Syrup', instr:'3 ml (Give after or with a meal)', status:'clear'},
-    {time:'9:00 AM', med:'Prednisone Derpson Tablet', instr:'1 tablet (Morning Dose; take with a whole meal or mixed in the meal)', status:'clear'},
+    {time:'6:30 AM - 7:00 AM', med:'Cytriboost Syrup', instr:'3 ml (Give with a snack/treat)', status:'clear'},
+    {time:'9:00 AM', med:'Prednisone Derpson Tablet', instr:'1 tablet (Morning Dose; with a full meal)', status:'clear'},
     {time:'12:30 PM - 1:00 PM', med:'Papi Bion Syrup', instr:'2 ml (Once daily supplement)', status:'clear'},
     {time:'1:30 PM - 2:00 PM', med:'ImmunoCare Syrup', instr:'3 ml (Once daily supplement)', status:'clear'},
-    {time:'6:30 PM - 7:30 PM', med:'Prednisone Derpson Tablet', instr:'1 tablet (Evening Dose; take with a whole meal or mixed in the meal)', status:'clear'},
-    {time:'9:00 PM', med:'Cytriboost Syrup', instr:'3 ml (2nd dose; Give after or with a meal)', status:'clear'},
+    {time:'6:30 PM - 7:30 PM', med:'Prednisone Derpson Tablet', instr:'1 tablet (Evening Dose; with a full meal)', status:'clear'},
+    {time:'9:00 PM', med:'Cytriboost Syrup', instr:'3 ml (2nd dose; Give with a snack/treat)', status:'clear'},
   ]},
   {date:'May 21 (Thu)', phase:'Phase 1: Dual', entries:[
-    {time:'6:30 AM - 7:00 AM', med:'Cytriboost Syrup', instr:'3 ml (Give after or with a meal)', status:'clear'},
-    {time:'9:00 AM', med:'Prednisone Derpson Tablet', instr:'1 tablet (Morning Dose; take with a whole meal or mixed in the meal)', status:'clear'},
+    {time:'6:30 AM - 7:00 AM', med:'Cytriboost Syrup', instr:'3 ml (Give with a snack/treat)', status:'clear'},
+    {time:'9:00 AM', med:'Prednisone Derpson Tablet', instr:'1 tablet (Morning Dose; with a full meal)', status:'clear'},
     {time:'12:30 PM - 1:00 PM', med:'Papi Bion Syrup', instr:'2 ml (Once daily supplement)', status:'clear'},
     {time:'1:30 PM - 2:00 PM', med:'ImmunoCare Syrup', instr:'3 ml (Once daily supplement)', status:'clear'},
-    {time:'6:30 PM - 7:30 PM', med:'Prednisone Derpson Tablet', instr:'1 tablet (Evening Dose; take with a whole meal or mixed in the meal)', status:'clear'},
-    {time:'9:00 PM', med:'Cytriboost Syrup', instr:'3 ml (2nd dose; Give after or with a meal)', status:'clear'},
+    {time:'6:30 PM - 7:30 PM', med:'Prednisone Derpson Tablet', instr:'1 tablet (Evening Dose; with a full meal)', status:'clear'},
+    {time:'9:00 PM', med:'Cytriboost Syrup', instr:'3 ml (2nd dose; Give with a snack/treat)', status:'clear'},
   ]},
   {date:'May 22 (Fri)', phase:'Phase 1: Dual', entries:[
-    {time:'6:30 AM - 7:00 AM', med:'Cytriboost Syrup', instr:'3 ml (Give after or with a meal)', status:'clear'},
-    {time:'9:00 AM', med:'Prednisone Derpson Tablet', instr:'1 tablet (Morning Dose; take with a whole meal or mixed in the meal)', status:'clear'},
+    {time:'6:30 AM - 7:00 AM', med:'Cytriboost Syrup', instr:'3 ml (Give with a snack/treat)', status:'clear'},
+    {time:'9:00 AM', med:'Prednisone Derpson Tablet', instr:'1 tablet (Morning Dose; with a full meal)', status:'clear'},
     {time:'12:30 PM - 1:00 PM', med:'Papi Bion Syrup', instr:'2 ml (Once daily supplement)', status:'clear'},
     {time:'1:30 PM - 2:00 PM', med:'ImmunoCare Syrup', instr:'3 ml (Once daily supplement)', status:'clear'},
-    {time:'6:30 PM - 7:30 PM', med:'Prednisone Derpson Tablet', instr:'1 tablet (Evening Dose; take with a whole meal or mixed in the meal)', status:'clear'},
-    {time:'9:00 PM', med:'Cytriboost Syrup', instr:'3 ml (2nd dose; Give after or with a meal)', status:'clear'},
+    {time:'6:30 PM - 7:30 PM', med:'Prednisone Derpson Tablet', instr:'1 tablet (Evening Dose; with a full meal)', status:'clear'},
+    {time:'9:00 PM', med:'Cytriboost Syrup', instr:'3 ml (2nd dose; Give with a snack/treat)', status:'clear'},
   ]},
   {date:'May 23 (Sat)', phase:'Phase 1: Dual', entries:[
-    {time:'6:30 AM - 7:00 AM', med:'Cytriboost Syrup', instr:'3 ml (Give after or with a meal)', status:'clear'},
-    {time:'9:00 AM', med:'Prednisone Derpson Tablet', instr:'1 tablet (Morning Dose; take with a whole meal or mixed in the meal)', status:'clear'},
+    {time:'6:30 AM - 7:00 AM', med:'Cytriboost Syrup', instr:'3 ml (Give with a snack/treat)', status:'clear'},
+    {time:'9:00 AM', med:'Prednisone Derpson Tablet', instr:'1 tablet (Morning Dose; with a full meal)', status:'clear'},
     {time:'12:30 PM - 1:00 PM', med:'Papi Bion Syrup', instr:'2 ml (Once daily supplement)', status:'clear'},
     {time:'1:30 PM - 2:00 PM', med:'ImmunoCare Syrup', instr:'3 ml (Once daily supplement)', status:'clear'},
-    {time:'6:30 PM - 7:30 PM', med:'Prednisone Derpson Tablet', instr:'1 tablet (Evening Dose; take with a whole meal or mixed in the meal)', status:'clear'},
-    {time:'9:00 PM', med:'Cytriboost Syrup', instr:'3 ml (2nd dose; Give after or with a meal)', status:'clear'},
+    {time:'6:30 PM - 7:30 PM', med:'Prednisone Derpson Tablet', instr:'1 tablet (Evening Dose; with a full meal)', status:'clear'},
+    {time:'9:00 PM', med:'Cytriboost Syrup', instr:'3 ml (2nd dose; Give with a snack/treat)', status:'clear'},
   ]},
   {date:'May 24 (Sun)', phase:'Phase 2: Single', entries:[
-    {time:'6:30 AM - 7:00 AM', med:'Cytriboost Syrup', instr:'3 ml (Give after or with a meal)', status:'clear'},
-    {time:'9:00 AM', med:'Prednisone Derpson Tablet', instr:'1 TABLET ONLY FOR THE DAY (Phase Change: Once Daily; take with a whole meal or mixed in the meal)', status:'clear'},
+    {time:'6:30 AM - 7:00 AM', med:'Cytriboost Syrup', instr:'3 ml (Give with a snack/treat)', status:'clear'},
+    {time:'9:00 AM', med:'Prednisone Derpson Tablet', instr:'1 TABLET ONLY FOR THE DAY (Phase Change: Once Daily; with a full meal)', status:'clear'},
     {time:'12:30 PM - 1:00 PM', med:'Papi Bion Syrup', instr:'2 ml (Once daily supplement)', status:'clear'},
     {time:'1:30 PM - 2:00 PM', med:'ImmunoCare Syrup', instr:'3 ml (Once daily supplement)', status:'clear'},
     {time:'6:00 PM - 8:00 PM', med:'Cytriboost Syrup', instr:'3 ml (Extended evening dose; evening Prednisone discontinued)', status:'clear'},
   ]}, 
   {date:'May 25 (Mon)', phase:'Phase 2: Single', entries:[
-    {time:'6:30 AM - 7:00 AM', med:'Cytriboost Syrup', instr:'3 ml (Give after or with a meal)', status:'clear'},
-    {time:'9:00 AM', med:'Prednisone Derpson Tablet', instr:'1 TABLET ONLY FOR THE DAY (Once Daily Phase; take with a whole meal or mixed in the meal)', status:'clear'},
+    {time:'6:30 AM - 7:00 AM', med:'Cytriboost Syrup', instr:'3 ml (Give with a snack/treat)', status:'clear'},
+    {time:'9:00 AM', med:'Prednisone Derpson Tablet', instr:'1 TABLET ONLY FOR THE DAY (Once Daily Phase; with a full meal)', status:'clear'},
     {time:'12:30 PM - 1:00 PM', med:'Papi Bion Syrup', instr:'2 ml (Once daily supplement)', status:'clear'},
     {time:'1:30 PM - 2:00 PM', med:'ImmunoCare Syrup', instr:'3 ml (Once daily supplement)', status:'clear'},
     {time:'6:00 PM - 8:00 PM', med:'Cytriboost Syrup', instr:'3 ml (Extended evening dose; evening Prednisone discontinued)', status:'clear'},
   ]},
   {date:'May 26 (Tue)', phase:'Phase 2: Single', entries:[
-    {time:'6:30 AM - 7:00 AM', med:'Cytriboost Syrup', instr:'3 ml (Give after or with a meal)', status:'clear'},
-    {time:'9:00 AM', med:'Prednisone Derpson Tablet', instr:'1 TABLET ONLY FOR THE DAY (Once Daily Phase; take with a whole meal or mixed in the meal)', status:'clear'},
+    {time:'6:30 AM - 7:00 AM', med:'Cytriboost Syrup', instr:'3 ml (Give with a snack/treat)', status:'clear'},
+    {time:'9:00 AM', med:'Prednisone Derpson Tablet', instr:'1 TABLET ONLY FOR THE DAY (Once Daily Phase; with a full meal)', status:'clear'},
     {time:'12:30 PM - 1:00 PM', med:'Papi Bion Syrup', instr:'2 ml (Once daily supplement)', status:'clear'},
     {time:'1:30 PM - 2:00 PM', med:'ImmunoCare Syrup', instr:'3 ml (Once daily supplement)', status:'clear'},
     {time:'6:00 PM - 8:00 PM', med:'Cytriboost Syrup', instr:'3 ml (Extended evening dose; evening Prednisone discontinued)', status:'clear'},
   ]},
   {date:'May 27 (Wed)', phase:'Phase 2: Single', entries:[
-    {time:'6:30 AM - 7:00 AM', med:'Cytriboost Syrup', instr:'3 ml (Give after or with a meal)', status:'clear'},
-    {time:'9:00 AM', med:'Prednisone Derpson Tablet', instr:'1 TABLET ONLY FOR THE DAY (Once Daily Phase; take with a whole meal or mixed in the meal)', status:'clear'},
+    {time:'6:30 AM - 7:00 AM', med:'Cytriboost Syrup', instr:'3 ml (Give with a snack/treat)', status:'clear'},
+    {time:'9:00 AM', med:'Prednisone Derpson Tablet', instr:'1 TABLET ONLY FOR THE DAY (Once Daily Phase; with a full meal)', status:'clear'},
     {time:'12:30 PM - 1:00 PM', med:'Papi Bion Syrup', instr:'2 ml (Once daily supplement)', status:'clear'},
     {time:'1:30 PM - 2:00 PM', med:'ImmunoCare Syrup', instr:'3 ml (Once daily supplement)', status:'clear'},
     {time:'6:00 PM - 8:00 PM', med:'Cytriboost Syrup', instr:'3 ml (Extended evening dose; evening Prednisone discontinued)', status:'clear'},
   ]},
   {date:'May 28 (Thu)', phase:'Phase 2: Single', entries:[
-    {time:'6:30 AM - 7:00 AM', med:'Cytriboost Syrup', instr:'3 ml (Give after or with a meal)', status:'clear'},
-    {time:'9:00 AM', med:'Prednisone Derpson Tablet', instr:'1 TABLET ONLY FOR THE DAY (Once Daily Phase; take with a whole meal or mixed in the meal)', status:'clear'},
+    {time:'6:30 AM - 7:00 AM', med:'Cytriboost Syrup', instr:'3 ml (Give with a snack/treat)', status:'clear'},
+    {time:'9:00 AM', med:'Prednisone Derpson Tablet', instr:'1 TABLET ONLY FOR THE DAY (Once Daily Phase; with a full meal)', status:'clear'},
     {time:'12:30 PM - 1:00 PM', med:'Papi Bion Syrup', instr:'2 ml (Once daily supplement)', status:'clear'},
     {time:'1:30 PM - 2:00 PM', med:'ImmunoCare Syrup', instr:'3 ml (Once daily supplement)', status:'clear'},
     {time:'6:00 PM - 8:00 PM', med:'Cytriboost Syrup', instr:'3 ml (Extended evening dose; evening Prednisone discontinued)', status:'clear'},
   ]},
   {date:'May 29 (Fri)', phase:'Phase 2: Single', entries:[
-    {time:'6:30 AM - 7:00 AM', med:'Cytriboost Syrup', instr:'FINAL MORNING DOSE: 3 ml (Give after or with a meal)', status:'clear'},
-    {time:'9:00 AM', med:'Prednisone Derpson Tablet', instr:'1 TABLET ONLY FOR THE DAY (Once Daily Phase; take with a whole meal or mixed in the meal)', status:'clear'},
+    {time:'6:30 AM - 7:00 AM', med:'Cytriboost Syrup', instr:'FINAL MORNING DOSE: 3 ml (Give with a snack/treat)', status:'clear'},
+    {time:'9:00 AM', med:'Prednisone Derpson Tablet', instr:'1 TABLET ONLY FOR THE DAY (Once Daily Phase; with a full meal)', status:'clear'},
     {time:'12:30 PM - 1:00 PM', med:'Papi Bion Syrup', instr:'2 ml (Once daily supplement)', status:'clear'},
     {time:'1:30 PM - 2:00 PM', med:'ImmunoCare Syrup', instr:'3 ml (Once daily supplement)', status:'clear'},
     {time:'6:00 PM - 8:00 PM', med:'Cytriboost Syrup', instr:'FINAL EVENING DOSE: 3 ml (Regimen Completed)', status:'clear'},
   ]},
   {date:'May 30 (Sat)', phase:'Phase 2: Single', entries:[
-    {time:'9:00 AM', med:'Prednisone Derpson Tablet', instr:'1 TABLET ONLY FOR THE DAY (Once Daily Phase; take with a whole meal or mixed in the meal)', status:'clear'},
+    {time:'9:00 AM', med:'Prednisone Derpson Tablet', instr:'1 TABLET ONLY FOR THE DAY (Once Daily Phase; with a full meal)', status:'clear'},
     {time:'12:30 PM - 1:00 PM', med:'Papi Bion Syrup', instr:'2 ml (Once daily supplement)', status:'clear'},
     {time:'1:30 PM - 2:00 PM', med:'ImmunoCare Syrup', instr:'3 ml (Once daily supplement)', status:'clear'},
   ]},
 ];
 const STORAGE_KEY='binsoy_tasks_v1';
-const SETTINGS_KEY='binsoy_settings_v1';
+const STATE_VERSION_KEY='binsoy_state_version_v1';
+const STATE_VERSION='2';
 const REMINDER_HISTORY_KEY='binsoy_reminder_history_v1';
-const DEFAULT_SETTINGS={theme:'light',reminders:false};
+const THEME_KEY='binsoy_theme_v1';
+const DEFAULT_SETTINGS={theme:'dark',reminders:false};
 function loadState(){
   const raw=localStorage.getItem(STORAGE_KEY);
   if(raw){
     try{
       const parsed=JSON.parse(raw);
       if(Array.isArray(parsed)&&parsed.length===sample.length&&parsed.every((day,i)=>day.date===sample[i].date)){
-        return parsed;
+        const savedVersion=localStorage.getItem(STATE_VERSION_KEY);
+        if(savedVersion===STATE_VERSION){
+          return parsed;
+        }
+        const merged=sample.map(day=>({
+          date:day.date,
+          phase:day.phase||'',
+          entries:day.entries.map(entry=>{
+            const previousDay=parsed.find(d=>d.date===day.date);
+            const previousEntry=previousDay?.entries.find(e=>e.time===entry.time&&e.med===entry.med);
+            return {
+              time:entry.time,
+              med:entry.med,
+              instr:entry.instr,
+              status:entry.status,
+              done:previousEntry?.done||false,
+              na:previousEntry?.na||entry.status==='N/A'
+            };
+          })
+        }));
+        localStorage.setItem(STORAGE_KEY,JSON.stringify(merged));
+        localStorage.setItem(STATE_VERSION_KEY,STATE_VERSION);
+        return merged;
       }
     }catch(e){}
   }
   const state=sample.map(day=>({date:day.date,phase:day.phase||'',entries:day.entries.map(e=>({time:e.time,med:e.med,instr:e.instr,status:e.status,done:false,na:e.status==='N/A'}))}));
   localStorage.setItem(STORAGE_KEY,JSON.stringify(state));
+  localStorage.setItem(STATE_VERSION_KEY,STATE_VERSION);
   return state;
 }
-function loadSavedSettings(){
-  // settings UI removed; return defaults
-  return {...DEFAULT_SETTINGS};
+function loadTheme(){
+  return localStorage.getItem(THEME_KEY)||DEFAULT_SETTINGS.theme;
 }
 let state=loadState();
-let settings=loadSavedSettings();
+let settings={theme:loadTheme(),reminders:false};
 const list=document.getElementById('list');
 function render(){
   list.innerHTML='';
@@ -158,33 +182,8 @@ function saveLocal(markTime=true){
 function applyTheme(theme){
   document.body.dataset.theme=theme;
   document.getElementById('toggleTheme').textContent=theme==='dark'?'☀️':'🌙';
-  document.getElementById('enableDarkMode').checked=theme==='dark';
+  localStorage.setItem(THEME_KEY,theme);
 }
-function saveSettings(){
-  const token=document.getElementById('token').value.trim();
-  const repo=document.getElementById('repo').value.trim();
-  const path=document.getElementById('path').value.trim()||'tasks.json';
-  const reminders=document.getElementById('enableNotifications').checked;
-  const theme=document.getElementById('enableDarkMode').checked?'dark':'light';
-  settings={token,repo,path,theme,reminders};
-  localStorage.setItem(SETTINGS_KEY,JSON.stringify(settings));
-  applyTheme(theme);
-  renderSummary();
-  showAlert('Settings saved locally.',4000);
-}
-function initSettingsPanel(){
-  settings=loadSavedSettings();
-  document.getElementById('token').value=settings.token||'';
-  document.getElementById('repo').value=settings.repo||'';
-  document.getElementById('path').value=settings.path||'tasks.json';
-  document.getElementById('enableNotifications').checked=!!settings.reminders;
-  document.getElementById('enableDarkMode').checked=settings.theme==='dark';
-  applyTheme(settings.theme||'light');
-}
-function toggleSettingsPanel(open){
-  document.getElementById('settingsPanel').style.display=open?'block':'none';
-}
-// Settings UI removed: saveSettings, initSettingsPanel, and toggleSettingsPanel removed.
 function showAlert(message,duration=5000){
   const banner=document.getElementById('alertBanner');
   banner.textContent=message;
@@ -227,7 +226,6 @@ function showReminder(entry,day){
   showAlert(message,7000);
 }
 function checkReminders(){
-  settings = loadSavedSettings();
   if(!settings.reminders) return;
   const now=new Date();
   const history=JSON.parse(localStorage.getItem(REMINDER_HISTORY_KEY)||'{}');
@@ -247,69 +245,22 @@ function checkReminders(){
     });
   });
 }
-function githubSave(){
-  settings=loadSavedSettings();
-  if(!settings||!settings.token||!settings.repo) throw new Error('Missing GitHub token or repository. Please save settings first.');
-  const [owner,repo]=settings.repo.split('/');
-  if(!owner||!repo) throw new Error('Repo format must be owner/repo');
-  const path=settings.path||'tasks.json';
-  const apiBase='https://api.github.com';
-  const content=btoa(unescape(encodeURIComponent(JSON.stringify({state,savedAt:new Date().toISOString()},null,2))));
-  const headers={Authorization:'token '+settings.token,'Content-Type':'application/json'};
-  return fetch(`${apiBase}/repos/${owner}/${repo}/contents/${encodeURIComponent(path)}`,{headers})
-    .then(res=>{if(!res.ok&&res.status!==404)throw new Error(`GitHub API error: ${res.status}`);return res.status===200?res.json():null;})
-    .then(data=>{
-      const sha=data?.sha;
-      const body={message:'Update task tracker progress',content,committer:{name:'Binsoy Tracker',email:'noreply@example.com'}};
-      if(sha) body.sha=sha;
-      return fetch(`${apiBase}/repos/${owner}/${repo}/contents/${encodeURIComponent(path)}`,{method:'PUT',headers,body:JSON.stringify(body)});
-    })
-    .then(res=>{if(!res.ok)throw new Error(`GitHub save failed: ${res.status}`);return res.json();});
-}
-document.getElementById('save').addEventListener('click',async()=>{
- const s = loadSavedSettings();
-  if(!s.token || !s.repo){
-    showAlert('GitHub settings missing. Open settings to configure cloud save.',7000);
-    initSettingsPanel();
-    toggleSettingsPanel(true);
-    return;
-  }
-  try{
-    document.getElementById('save').textContent='Saving...';
-    await githubSave();
-    localStorage.setItem('binsoy_lastsave',new Date().toLocaleString());
-    renderSummary();
-    showAlert('Saved locally and to GitHub.',4000);
-  }catch(e){
-    console.warn(e);
-    showAlert('Saved locally. Cloud save failed: '+e.message,7000);
-  }finally{document.getElementById('save').textContent='Save progress';}
+document.getElementById('save').addEventListener('click',()=>{
   saveLocal(true);
+  showAlert('Saved locally.',4000);
 });
 document.getElementById('reset').addEventListener('click',()=>{
   if(!confirm('Reset all progress to unchecked?')) return;
   state.forEach(day=>day.entries.forEach(entry=>{entry.done=false;}));
   saveLocal(true);render();
 });
-document.getElementById('toggleSettings').addEventListener('click',()=>{initSettingsPanel();toggleSettingsPanel(true);});
-document.getElementById('closeSettings').addEventListener('click',()=>toggleSettingsPanel(false));
-document.getElementById('saveSettings').addEventListener('click',()=>{saveSettings();toggleSettingsPanel(false);});
-document.getElementById('clearSettings').addEventListener('click',()=>{
-  if(!confirm('Clear stored GitHub token and repo?')) return;
-  localStorage.removeItem(SETTINGS_KEY);
-  localStorage.removeItem(REMINDER_HISTORY_KEY);
-  initSettingsPanel();
-  showAlert('Saved settings cleared.',4000);
-});
 document.getElementById('expandAll').addEventListener('click',()=>document.querySelectorAll('.items').forEach(n=>n.style.display='grid'));
 document.getElementById('collapseAll').addEventListener('click',()=>document.querySelectorAll('.items').forEach(n=>n.style.display='none'));
 document.getElementById('toggleTheme').addEventListener('click',()=>{
   const current=document.body.dataset.theme==='dark'?'light':'dark';
-  document.getElementById('enableDarkMode').checked=current==='dark';
   applyTheme(current);
-  saveSettings();
 });
-saveSettings();
+applyTheme(settings.theme);
 render();
 setInterval(checkReminders,30000);
 checkReminders();

@@ -151,14 +151,25 @@ function render(){
     const items=document.createElement('div');items.className='items';
     day.entries.forEach(entry=>{
       const item=document.createElement('div');item.className='item';
-      const cb=document.createElement('input');cb.type='checkbox';cb.className='checkbox';cb.checked=!!entry.done;cb.disabled=!!entry.na;
-      cb.addEventListener('change',()=>{entry.done=cb.checked; saveLocal(false); renderSummary();});
       const meta=document.createElement('div');meta.className='meta';
       meta.innerHTML=`<div class="time">${entry.time}</div><div class="med">${entry.med}</div><div class="instr">${entry.instr}</div>`;
       const status=document.createElement('div');status.className='status';
       const badge=document.createElement('div');badge.className='badge '+(entry.na?'badge-na':entry.done?'badge-done':'badge-pending');
       badge.textContent=entry.na?'N/A':entry.done?'Done':'Pending';
-      status.appendChild(cb);status.appendChild(badge);
+      if(!entry.na){
+        badge.classList.add('clickable');
+        badge.setAttribute('role','button');
+        badge.tabIndex=0;
+        badge.addEventListener('click',()=>{
+          entry.done = !entry.done;
+          saveLocal(false);
+          render();
+        });
+        badge.addEventListener('keydown',(e)=>{
+          if(e.key==='Enter' || e.key===' '){ e.preventDefault(); badge.click(); }
+        });
+      }
+      status.appendChild(badge);
       item.appendChild(meta);item.appendChild(status);
       items.appendChild(item);
     });

@@ -71,6 +71,8 @@ body[data-theme='dark'] .item{background:#0f172a;}
 .instr{color:var(--muted);font-size:0.92rem;line-height:1.5;}
 .status{display:flex;align-items:center;gap:12px;justify-content:flex-end;}
 .badge{padding:6px 10px;border-radius:999px;font-size:0.85rem;font-weight:700;}
+.badge.clickable{cursor:pointer;}
+.badge.clickable:focus{outline:2px solid rgba(20,184,166,0.12);outline-offset:4px;border-radius:999px;}
 .badge-clear{background:rgba(22,163,74,0.12);color:var(--success);}
 .badge-na{background:rgba(148,163,184,0.14);color:var(--muted);}
 .badge-done{background:rgba(20,184,166,0.16);color:var(--accent-strong);}

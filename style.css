@@ -86,7 +86,7 @@ body[data-theme='dark'] footer{background:rgba(15,23,42,0.92);border-color:rgba(
 @media (max-width:720px){
   header, main, footer{padding-left:16px;padding-right:16px;}
   .overview-row{flex-direction:column;align-items:flex-start;}
-  .item{grid-template-columns:1fr;}
-  .status{justify-content:flex-start;}
+  .item{grid-template-columns:1fr;align-items:flex-start;}
+  .status{justify-content:flex-start;align-items:flex-start;}
   .controls{justify-content:flex-start;}
 }
